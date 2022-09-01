@@ -146,13 +146,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AssetsPPU: 8
-  m_RefResolutionX: 230
-  m_RefResolutionY: 128
+  m_RefResolutionX: 214
+  m_RefResolutionY: 120
   m_UpscaleRT: 0
   m_PixelSnapping: 0
-  m_CropFrameX: 0
-  m_CropFrameY: 0
-  m_StretchFill: 0
+  m_CropFrameX: 1
+  m_CropFrameY: 1
+  m_StretchFill: 1
 --- !u!1001 &785585212351172510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -218,7 +218,7 @@ PrefabInstance:
     - target: {fileID: 2861729351993788828, guid: cc93243d9a2af9d458cc09cb8cc5b7ee,
         type: 3}
       propertyPath: orthographic size
-      value: 8
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 2861729351993788831, guid: cc93243d9a2af9d458cc09cb8cc5b7ee,
         type: 3}
