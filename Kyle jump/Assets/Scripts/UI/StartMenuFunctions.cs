@@ -6,16 +6,17 @@ public class StartMenuFunctions : MonoBehaviour
 
     public void newGamePressed()
     {
-        Debug.Log("new game");
+        mainMenuFunctions.changeMenu(-1);
     }
 
     public void optionsPressed()
     {
-        Debug.Log("Options");
+        mainMenuFunctions.changeMenu(1);
     }
 
     public void quitPressed()
     {
-        Debug.Log("quit");
+        Application.Quit();
+        Debug.Log("quit game");
     }
 }

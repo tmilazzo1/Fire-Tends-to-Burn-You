@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
 public class ButtonFunctions : MonoBehaviour
 {
@@ -15,19 +13,22 @@ public class ButtonFunctions : MonoBehaviour
     public onPressedEvent pressedEvent { get { return onPressed; } set { onPressed = value; } }
 
 
-    [SerializeField] ButtonManager buttonManager;
-    [SerializeField] int thisIndex;
+    ButtonManager buttonManager;
+    int thisIndex;
     Animator animator;
     bool canPress = true;
     bool keyDown = false;
 
-    private void Start()
+    public void setVariables(int newIndex, ButtonManager newButtonManager)
     {
+        buttonManager = newButtonManager;
+        thisIndex = newIndex;
         animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
+        if (!buttonManager) return;
         if(buttonManager.getIndex() == thisIndex)
         {
             animator.SetBool("selected", true);
@@ -39,13 +40,10 @@ public class ButtonFunctions : MonoBehaviour
                     if (canPress)
                     {
                         onPressed.Invoke();
-                        animator.SetBool("pressed", true);
+                        animator.SetTrigger("pressed");
                         canPress = false;
                     }
                     keyDown = true;
-                }else
-                {
-                    animator.SetBool("pressed", false);
                 }
             }else
             {

@@ -5,7 +5,7 @@ public class TransitionFunctions : MonoBehaviour
     ButtonManager buttonManager;
     ArrowManager arrowManager;
 
-    private void Start()
+    private void Awake()
     {
         buttonManager = GetComponent<ButtonManager>();
         arrowManager = GetComponent<ArrowManager>();
@@ -15,5 +15,11 @@ public class TransitionFunctions : MonoBehaviour
     {
         arrowManager.changeState(enabledVar);
         buttonManager.changeState(enabledVar);
+    }
+
+    public void freezeFunctions(bool freezeVar)
+    {
+        arrowManager.changeState(!freezeVar);
+        buttonManager.freezeFunction(freezeVar);
     }
 }

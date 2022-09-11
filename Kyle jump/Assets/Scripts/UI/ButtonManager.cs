@@ -2,14 +2,26 @@
 
 public class ButtonManager : MonoBehaviour
 {
-    [SerializeField] int maxIndex;
+    [SerializeField] Transform buttonsParent;
+    int maxIndex;
     int index;
     bool keyDown;
     bool isEnabled = true;
+    bool isFrozen = false;
+
+    private void Start()
+    {
+        maxIndex = buttonsParent.childCount - 1;
+        for(int i = 0; i < buttonsParent.childCount; i++)
+        {
+            buttonsParent.GetChild(i).gameObject.GetComponent<ButtonFunctions>().setVariables(i, this);
+        }
+    }
 
     private void Update()
     {
         if (!isEnabled) return;
+        if (isFrozen) return;
 
         if(Input.GetAxisRaw("Vertical") != 0)
         {
@@ -60,5 +72,10 @@ public class ButtonManager : MonoBehaviour
     public void changeState(bool enabledVar)
     {
         isEnabled = enabledVar;
+    }
+
+    public void freezeFunction(bool freezeVar)
+    {
+        isFrozen = freezeVar;
     }
 }

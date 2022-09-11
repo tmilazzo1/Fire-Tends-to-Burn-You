@@ -1,16 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class OptionFunctions : MonoBehaviour
 {
-    public void fullScreen()
+    [SerializeField] GameObject volumeSlider;
+    TransitionFunctions transitionFunctions;
+    bool functionsFrozen = false;
+
+    private void Start()
+    {
+        transitionFunctions = GetComponent<TransitionFunctions>();
+    }
+
+    public void fullScreenPressed()
     {
         Debug.Log("fullscreen");
     }
 
-    public void volume()
+    public void volumePressed()
     {
-        Debug.Log("volume");
+        volumeSlider.GetComponent<SliderFunctions>().selectSlider();
+        functionsFrozen = !functionsFrozen;
+        transitionFunctions.freezeFunctions(functionsFrozen);
+    }
+
+    public void setVolume()
+    {
+        Debug.Log(volumeSlider.GetComponent<Slider>().value);
     }
 }
