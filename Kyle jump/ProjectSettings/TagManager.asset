@@ -5,7 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Deadly
-  - RespawnPoint
+  - LevelData
   layers:
   - Default
   - TransparentFX
@@ -54,6 +54,9 @@ TagManager:
     locked: 0
   - name: Deadly
     uniqueID: 1232412411
+    locked: 0
+  - name: Text
+    uniqueID: 3201496187
     locked: 0
   - name: Default
     uniqueID: 0

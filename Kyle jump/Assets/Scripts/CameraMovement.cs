@@ -3,6 +3,7 @@
 public class CameraMovement : MonoBehaviour
 {
     Camera cam;
+    Vector3 oldCamPos;
     float widthOfScreen;
     float heightOfScreen;
 
@@ -11,12 +12,17 @@ public class CameraMovement : MonoBehaviour
         cam = GetComponent<Camera>();
         heightOfScreen = cam.orthographicSize * 2;
         widthOfScreen = heightOfScreen * cam.aspect;
-        Debug.Log(cam.aspect);
+        GameManager.Instance.changeLevelData();
     }
 
     void Update()
     {
         transform.position = new Vector3(getCameraPosX(), getCameraPosY(), transform.position.z);
+        if(oldCamPos != transform.position)
+        {
+            oldCamPos = transform.position;
+            GameManager.Instance.changeLevelData();
+        }
     }
 
     float getCameraPosX()

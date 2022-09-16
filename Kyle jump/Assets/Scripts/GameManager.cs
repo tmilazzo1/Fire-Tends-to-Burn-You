@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -15,8 +14,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    float timeElapsed = 0;
-
     [Header("Unity Setup")]
 
     [SerializeField] string gameManagerName;
@@ -27,6 +24,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject playerRespawnPrefab;
     [SerializeField] float respawnTime;
     Vector3 tempPlayerPosition;
+    LevelData currentLevelData;
+
+    [Header("Player Stats")]
+
+    float timeElapsed;
+    int playerDeaths;
 
     private void Awake()
     {
@@ -34,32 +37,20 @@ public class GameManager : MonoBehaviour
         if (GameObject.Find(gameManagerName) != gameObject) Destroy(gameObject);
     }
 
-    private void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
-
-    private void Update()
+    private void FixedUpdate()
     {
         timeElapsed += Time.deltaTime;
+    }
 
-        if(Input.GetKeyDown("p"))
-        {
-            Debug.Log("Pause the game");
-            Debug.Log("timeElapsed: " + timeElapsed);
-            if(Time.timeScale == 0)
-            {
-                Time.timeScale = 1;
-            }else
-            {
-                Time.timeScale = 0;
-            }
-        }
+    public void changeTimeScale(float newTime)
+    {
+        Time.timeScale = newTime;
     }
 
     //called from Player
     public void playerDeath()
     {
+        playerDeaths++;
         tempPlayerPosition = Player.Instance.transform.position;
         Destroy(Player.Instance.gameObject);
         StartCoroutine(playerRespawn());
@@ -68,32 +59,47 @@ public class GameManager : MonoBehaviour
     IEnumerator playerRespawn()
     {
         yield return new WaitForSeconds(respawnTime);
-        Instantiate(playerRespawnPrefab, getRespawnPoint(), Quaternion.identity, null);
+        Instantiate(playerRespawnPrefab, currentLevelData.respawnPoint.position, Quaternion.identity, null);
     }
 
-    Vector3 getRespawnPoint()
+    GameObject getClosestLevelData()
     {
-        GameObject[] respawnPoints;
-        respawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
+        GameObject[] levelDatas;
+        levelDatas = GameObject.FindGameObjectsWithTag("LevelData");
         GameObject closest = null;
         float distance = Mathf.Infinity;
 
-        foreach(GameObject respawnPoint in respawnPoints)
+        foreach(GameObject levelData in levelDatas)
         {
-            Vector3 diff = respawnPoint.transform.position - cam.transform.position;
+            Vector3 diff = levelData.transform.position - cam.transform.position;
             float curDistance = diff.sqrMagnitude;
             if(curDistance < distance)
             {
-                closest = respawnPoint;
+                closest = levelData;
                 distance = curDistance;
             }
         }
-        return closest.transform.position;
+        return closest;
     }
 
     //called from CameraMovement
     public Vector3 getTempPlayerPosition()
     {
         return tempPlayerPosition;
+    }
+
+    public void changeLevelData()
+    {
+        currentLevelData = getClosestLevelData().GetComponent<LevelData>();
+    }
+
+    public int getCurrentLevel()
+    {
+        return currentLevelData.levelNum;
+    }
+
+    public float getTimeElapsed()
+    {
+        return timeElapsed;
     }
 }
