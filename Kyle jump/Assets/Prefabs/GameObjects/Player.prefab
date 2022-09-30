@@ -235,7 +235,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.71, y: 0.014335938}
+  m_Size: {x: 0.69, y: 0.01}
   m_EdgeRadius: 0
 --- !u!1 &2206482128650870643
 GameObject:
@@ -269,8 +269,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2206482128650870643}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.96, y: -1.84, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 8817259193477888154}
   - {fileID: 579734390}
@@ -325,7 +325,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.722, y: 0.722}
+  m_Size: {x: 0.715, y: 0.715}
   m_EdgeRadius: 0
 --- !u!114 &2206482128650870652
 MonoBehaviour:
@@ -344,10 +344,10 @@ MonoBehaviour:
   jumpPower: 11
   jumpTime: 0.16
   delayedJumpInputDuration: 0.1
-  coyoteTimeDuration: 0.05
-  moveSpeed: 9
-  lerpTime: 0.1
-  airLerpTimeMultiplier: 1.5
+  coyoteTimeDuration: 0.04
+  moveSpeed: 8
+  lerpTime: 0.04
+  airLerpTimeMultiplier: 1.1
 --- !u!114 &2206482128650870653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,7 +491,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.71, y: 0.014335938}
+  m_Size: {x: 0.69, y: 0.01}
   m_EdgeRadius: 0
 --- !u!1 &6525011621007569848
 GameObject:

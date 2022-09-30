@@ -11,7 +11,15 @@ public class Fungus : MonoBehaviour
 
     public void shootBullet()
     {
-        GameObject fireball = (GameObject)Instantiate(fireballPrefab, shootPosition.position, Quaternion.identity, null);
+        GameObject fireball = (GameObject)Instantiate(fireballPrefab, shootPosition.position, Quaternion.identity, transform);
         fireball.GetComponent<Rigidbody2D>().velocity = shootDir * speed;
+    }
+
+    private void OnEnable()
+    {
+        for(int i = 0; i < transform.childCount; i++)
+        {
+            if(transform.GetChild(i) != shootPosition) Destroy(transform.GetChild(i).gameObject);
+        }
     }
 }

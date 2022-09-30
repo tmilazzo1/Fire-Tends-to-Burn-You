@@ -20,7 +20,7 @@ PrefabInstance:
     - target: {fileID: 7072358567018008011, guid: 7c2533950cda8bb479b17ef57f88f9ea,
         type: 3}
       propertyPath: m_Name
-      value: Fungus
+      value: Fungus_Left
       objectReference: {fileID: 0}
     - target: {fileID: 7072358567018008053, guid: 7c2533950cda8bb479b17ef57f88f9ea,
         type: 3}
@@ -30,12 +30,12 @@ PrefabInstance:
     - target: {fileID: 7072358567018008053, guid: 7c2533950cda8bb479b17ef57f88f9ea,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.01
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7072358567018008053, guid: 7c2533950cda8bb479b17ef57f88f9ea,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7072358567018008053, guid: 7c2533950cda8bb479b17ef57f88f9ea,
         type: 3}

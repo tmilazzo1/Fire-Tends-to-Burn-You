@@ -31,8 +31,8 @@ public class Player : MonoBehaviour
         particlesOnDeath = GetComponent<ParticlesOnDeath>();
         if (playerIsDead) return;
         playerIsDead = true;
-        particlesOnDeath.particlesOnDeath(trailParticles, 0);
-        particlesOnDeath.particlesOnDeath(deathParticles, 30);
+        particlesOnDeath.particlesOnDeath(trailParticles, 0, null);
+        particlesOnDeath.particlesOnDeath(deathParticles, 30, null);
         GameManager.Instance.playerDeath();
     }
 }

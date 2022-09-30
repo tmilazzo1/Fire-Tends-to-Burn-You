@@ -6,12 +6,14 @@ public class Fireball : MonoBehaviour
 {
     [SerializeField] GameObject fireTrailParticles;
     [SerializeField] GameObject fireDeathParticles;
+    Transform parent;
     ParticlesOnDeath particlesOnDeath;
     bool collided = false;
 
     private void Start()
     {
         Destroy(gameObject, 3f);
+        parent = transform.parent;
         particlesOnDeath = GetComponent<ParticlesOnDeath>();
     }
 
@@ -26,8 +28,8 @@ public class Fireball : MonoBehaviour
             if(collision.gameObject == Player.Instance.gameObject) Player.Instance.die();
         }
 
-        particlesOnDeath.particlesOnDeath(fireTrailParticles, 0);
-        particlesOnDeath.particlesOnDeath(fireDeathParticles, 5);
+        particlesOnDeath.particlesOnDeath(fireTrailParticles, 0, parent);
+        particlesOnDeath.particlesOnDeath(fireDeathParticles, 5, parent);
         Destroy(gameObject);
     }
 }

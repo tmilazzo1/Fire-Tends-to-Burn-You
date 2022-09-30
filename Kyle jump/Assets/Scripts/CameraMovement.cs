@@ -13,6 +13,7 @@ public class CameraMovement : MonoBehaviour
         heightOfScreen = cam.orthographicSize * 2;
         widthOfScreen = heightOfScreen * cam.aspect;
         GameManager.Instance.changeLevelData();
+        Debug.Log(cam.aspect);
     }
 
     void Update()

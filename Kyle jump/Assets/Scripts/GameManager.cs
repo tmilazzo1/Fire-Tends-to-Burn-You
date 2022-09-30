@@ -90,7 +90,9 @@ public class GameManager : MonoBehaviour
 
     public void changeLevelData()
     {
+        if(currentLevelData) currentLevelData.changeActive(false);
         currentLevelData = getClosestLevelData().GetComponent<LevelData>();
+        currentLevelData.changeActive(true);
     }
 
     public int getCurrentLevel()

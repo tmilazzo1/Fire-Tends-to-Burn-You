@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 4825295931838932889, guid: d68fbd10155cbae46bdd1fc8f512cf7c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4825295931838932889, guid: d68fbd10155cbae46bdd1fc8f512cf7c,
         type: 3}
@@ -75,7 +75,7 @@ PrefabInstance:
     - target: {fileID: 4825295931838932903, guid: d68fbd10155cbae46bdd1fc8f512cf7c,
         type: 3}
       propertyPath: m_Name
-      value: Fungus
+      value: Fungus_Down
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d68fbd10155cbae46bdd1fc8f512cf7c, type: 3}
