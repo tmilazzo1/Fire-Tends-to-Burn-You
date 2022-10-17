@@ -49,6 +49,7 @@ public class ButtonManager : MonoBehaviour
                         index++;
                     }
                 }
+                GameManager.Instance.GetComponent<AnimatorFunctions>().PlaySound(0);
                 keyDown = true;
             }
         }

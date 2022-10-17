@@ -48,9 +48,12 @@ public class MenuTransitionFunctions : MonoBehaviour
         if (dir > 0)
         {
             dir = 1;
-        }else
+            GameManager.Instance.GetComponent<AnimatorFunctions>().PlaySound(2);
+        }
+        else
         {
             dir = -1;
+            GameManager.Instance.GetComponent<AnimatorFunctions>().PlaySound(3);
         }
 
         currentMenuNumber += dir;

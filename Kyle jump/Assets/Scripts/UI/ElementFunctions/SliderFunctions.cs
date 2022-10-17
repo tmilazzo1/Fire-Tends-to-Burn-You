@@ -8,7 +8,7 @@ public class SliderFunctions : MonoBehaviour
     [SerializeField] Animator leftArrowAnimator;
     [SerializeField] Animator rightArrowAnimator;
     Text numberText;
-    Animator animator;
+    [SerializeField] Animator animator;
     Slider slider;
 
     [Header("Attributes")]
@@ -22,7 +22,8 @@ public class SliderFunctions : MonoBehaviour
     {
         slider = GetComponent<Slider>();
         numberText = GetComponentInChildren<Text>();
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
+        //Debug.Log(animator);
     }
 
     private void OnEnable()
@@ -46,6 +47,7 @@ public class SliderFunctions : MonoBehaviour
                             animPlaying = true;
                             slider.value += increment;
                             rightArrowAnimator.SetTrigger("bounce");
+                            GameManager.Instance.GetComponent<AnimatorFunctions>().PlaySound(4);
                         } 
                     }
                 }
@@ -58,6 +60,7 @@ public class SliderFunctions : MonoBehaviour
                             animPlaying = true;
                             slider.value -= increment;
                             leftArrowAnimator.SetTrigger("bounce");
+                            GameManager.Instance.GetComponent<AnimatorFunctions>().PlaySound(5);
                         }
                     }
                 }
@@ -71,7 +74,7 @@ public class SliderFunctions : MonoBehaviour
         }
     }
 
-    void updateText()
+    public void updateText()
     {
         numberText.text = slider.value.ToString("00");
     }

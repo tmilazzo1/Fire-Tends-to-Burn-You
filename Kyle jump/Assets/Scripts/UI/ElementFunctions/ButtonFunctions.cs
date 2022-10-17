@@ -13,17 +13,18 @@ public class ButtonFunctions : MonoBehaviour
     public onPressedEvent pressedEvent { get { return onPressed; } set { onPressed = value; } }
 
     ButtonManager buttonManager;
-    int thisIndex;
     Animator animator;
+    int thisIndex;
     bool canPress = true;
     bool keyDown = false;
+    bool submit = false;
 
     public void setVariables(int newIndex, ButtonManager newButtonManager)
     {
         buttonManager = newButtonManager;
         thisIndex = newIndex;
         animator = GetComponent<Animator>();
-        if (GetComponent<buttonSelected>()) GetComponent<buttonSelected>().setVar(thisIndex, buttonManager);
+        if (GetComponent<SecondaryButtonElements>()) GetComponent<SecondaryButtonElements>().setVar(thisIndex, buttonManager);
     }
 
     private void Update()
@@ -33,14 +34,16 @@ public class ButtonFunctions : MonoBehaviour
         {
             animator.SetBool("selected", true);
             animator.SetBool("selected", true);
-            if (Input.GetAxisRaw("Submit") == 1)
+            if (Input.GetAxisRaw("Submit") == 1 || submit)
             {
-                if(!keyDown)
+                submit = false;
+                if (!keyDown)
                 {
                     if (canPress)
                     {
                         onPressed.Invoke();
                         animator.SetTrigger("pressed");
+                        GameManager.Instance.GetComponent<AnimatorFunctions>().PlaySound(1);
                         canPress = false;
                     }
                     keyDown = true;
@@ -59,5 +62,10 @@ public class ButtonFunctions : MonoBehaviour
     public void enablePress()
     {
         canPress = true;
+    }
+
+    public void pressButton()
+    {
+        submit = true;
     }
 }

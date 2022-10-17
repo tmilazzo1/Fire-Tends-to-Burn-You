@@ -3,43 +3,37 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour
 {
-    //Singleton instatiation
-    private static SceneTransition instance;
-    public static SceneTransition Instance
-    {
-        get
-        {
-            if (instance == null) instance = GameObject.FindObjectOfType<SceneTransition>();
-            return instance;
-        }
-    }
-
-
-    [SerializeField] string newName;
-    string sceneName;
     Animator animator;
-
-    private void Awake()
-    {
-        name = newName;
-        if (GameObject.Find(newName) != gameObject) Destroy(gameObject);
-        DontDestroyOnLoad(gameObject);
-    }
+    int currentIndex;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        currentIndex = SceneManager.GetActiveScene().buildIndex;
+        setSceneIndex();
     }
 
-    public void loadScene(string newSceneName)
+    public void loadScene(int newSceneIndex)
     {
         animator.SetTrigger("start");
-        sceneName = newSceneName;
+        currentIndex = newSceneIndex;
     }
 
     public void animationFinished()
     {
-        SceneManager.LoadScene(sceneName);
-        Time.timeScale = 1;
+        SceneManager.LoadScene(currentIndex);
+        setSceneIndex();
+    }
+
+    void setSceneIndex()
+    {
+        if (currentIndex > 0)
+        {
+            GameManager.Instance.changeScene(true);
+        }
+        else
+        {
+            GameManager.Instance.changeScene(false);
+        }
     }
 }

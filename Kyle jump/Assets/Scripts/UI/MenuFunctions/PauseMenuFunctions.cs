@@ -5,7 +5,7 @@ public class PauseMenuFunctions : MonoBehaviour
 {
     [SerializeField] Text levelText;
     [SerializeField] Text timeText;
-    [SerializeField] string mainMenuName;
+    [SerializeField] int mainMenuIndex;
     MenuTransitionFunctions menuTransitionFunctions;
     EscapeFunctions escapeFunctions;
 
@@ -17,8 +17,8 @@ public class PauseMenuFunctions : MonoBehaviour
 
     private void OnEnable()
     {
-        levelText.text = GameManager.Instance.getCurrentLevel().ToString("00") + " / 30";
-        timeText.text = formatTime(GameManager.Instance.getTimeElapsed());
+        levelText.text = GameManager.Instance.currentLevelData.levelNum.ToString("00") + " / 30";
+        timeText.text = formatTime(GameManager.Instance.timeElapsed);
     }
 
     public void resumePressed()
@@ -30,7 +30,7 @@ public class PauseMenuFunctions : MonoBehaviour
     {
         menuTransitionFunctions.disableUI();
         escapeFunctions.changeAllowFunction(false);
-        SceneTransition.Instance.loadScene(mainMenuName);
+        GameManager.Instance.sceneTransition.loadScene(mainMenuIndex);
     }
 
     string formatTime(float time)

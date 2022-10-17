@@ -145,13 +145,13 @@ Tilemap:
       - {fileID: 1090201005945685357, guid: 3875c0ffa27f31d4e8babb4e37e53420, type: 3}
       - {fileID: -2841419758070975181, guid: 3875c0ffa27f31d4e8babb4e37e53420, type: 3}
       - {fileID: 4252087863923017952, guid: 3875c0ffa27f31d4e8babb4e37e53420, type: 3}
-      - {fileID: 2279311429202277500, guid: 3875c0ffa27f31d4e8babb4e37e53420, type: 3}
+      - {fileID: -3468318239647265162, guid: 3875c0ffa27f31d4e8babb4e37e53420, type: 3}
       - {fileID: 2279311429202277500, guid: 3875c0ffa27f31d4e8babb4e37e53420, type: 3}
       - {fileID: 5874403027523274591, guid: 3875c0ffa27f31d4e8babb4e37e53420, type: 3}
       - {fileID: 8834798349974644699, guid: 3875c0ffa27f31d4e8babb4e37e53420, type: 3}
       - {fileID: 5506000361259375556, guid: 3875c0ffa27f31d4e8babb4e37e53420, type: 3}
       m_AnimationSpeed: 2
-      m_AnimationTimeOffset: 3
+      m_AnimationTimeOffset: 9
       m_IsLooping: 1
   - first: {x: -1, y: 0, z: 0}
     second:
@@ -172,7 +172,7 @@ Tilemap:
       - {fileID: 3172763264804170353, guid: 66c0aedea5c59e146b48bdf0462a7916, type: 3}
       - {fileID: -6939236720218643535, guid: 66c0aedea5c59e146b48bdf0462a7916, type: 3}
       m_AnimationSpeed: 2
-      m_AnimationTimeOffset: 10
+      m_AnimationTimeOffset: 6
       m_IsLooping: 1
   - first: {x: 0, y: 0, z: 0}
     second:
@@ -193,7 +193,7 @@ Tilemap:
       - {fileID: 8184468753226185272, guid: a7e22b138d9f29f4d825bc5c2f2e0511, type: 3}
       - {fileID: -5193896574940964791, guid: a7e22b138d9f29f4d825bc5c2f2e0511, type: 3}
       m_AnimationSpeed: 2
-      m_AnimationTimeOffset: 11
+      m_AnimationTimeOffset: 9
       m_IsLooping: 1
   - first: {x: 1, y: 0, z: 0}
     second:
@@ -214,7 +214,7 @@ Tilemap:
       - {fileID: 5648347203214800415, guid: 25bde17632d2dde45b3ede7c6c5c5bdf, type: 3}
       - {fileID: 4859371138252898125, guid: 25bde17632d2dde45b3ede7c6c5c5bdf, type: 3}
       m_AnimationSpeed: 2
-      m_AnimationTimeOffset: 5
+      m_AnimationTimeOffset: 1
       m_IsLooping: 1
   m_TileAssetArray:
   - m_RefCount: 1
