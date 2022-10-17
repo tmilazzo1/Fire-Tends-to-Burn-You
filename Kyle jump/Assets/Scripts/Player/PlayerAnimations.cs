@@ -20,25 +20,38 @@ public class PlayerAnimations : MonoBehaviour
     float velocityCapY;
     float offsetY;
 
+    bool canLand = false;
+
 
     private void Start()
     {
         playerPhysics = GetComponent<PlayerPhysics>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        velocityCapY = playerPhysics.getJumpPower() * 0.7f;
+        velocityCapY = playerPhysics.jumpPower * 0.7f;
         offsetY = eye.transform.localPosition.y;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+        //calculating eyeposition
         timeCounter += Time.deltaTime;
         eye.transform.localPosition = new Vector3(getNewEyePosX(), getNewEyePosY(), 0);
+
+        //call land animation
+        if (rb.velocity.y < -.1) canLand = true;
+        if (playerPhysics.isGrounded && canLand)
+        {
+            canLand = false;
+            StartCoroutine(land());
+        }
+
+        crouch();
     }
 
     float getNewEyePosX()
     {
-        float percent = timeCounter / (playerPhysics.getLerpTime() / 2);
+        float percent = timeCounter / (playerPhysics.lerpTime / 2);
         return Mathf.Lerp(currentEyePosX, newEyePosX, percent);
     }
 
@@ -83,14 +96,16 @@ public class PlayerAnimations : MonoBehaviour
         yield return new WaitForSeconds(.01f);
         animator.SetBool("landed", false);
     }
-
+    
     public void crouch()
     {
-        animator.SetBool("crouch", true);
-    }
-
-    public void uncrouch()
-    {
-        animator.SetBool("crouch", false);
+        if (playerPhysics.canJump() && rb.velocity.x > -.01f && rb.velocity.x < .01f && Input.GetAxisRaw("Vertical") < 0)
+        {
+            animator.SetBool("crouch", true);
+        }
+        else
+        {
+            animator.SetBool("crouch", false);
+        }
     }
 }

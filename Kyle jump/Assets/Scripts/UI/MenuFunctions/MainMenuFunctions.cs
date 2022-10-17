@@ -2,7 +2,7 @@
 
 public class MainMenuFunctions : MonoBehaviour
 {
-    [SerializeField] string gameSceneName;
+    [SerializeField] int gameSceneIndex;
     MenuTransitionFunctions menuTransitionFunctions;
 
     private void Start()
@@ -13,12 +13,7 @@ public class MainMenuFunctions : MonoBehaviour
     public void newGamePressed()
     {
         menuTransitionFunctions.disableUI();
-        SceneTransition.Instance.loadScene(gameSceneName);
-    }
-
-    public void newGamePlusPressed()
-    {
-        Debug.Log("newGame+");
+        GameManager.Instance.sceneTransition.loadScene(gameSceneIndex);
     }
 
     public void quitPressed()

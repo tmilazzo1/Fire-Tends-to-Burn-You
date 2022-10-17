@@ -3,18 +3,40 @@ using UnityEngine.UI;
 
 public class OptionFunctions : MonoBehaviour
 {
-    [SerializeField] GameObject volumeSlider;
+    [Header("fullScreen variables")]
+
     [SerializeField] Animator fullScreenToggleAnimator;
-    [SerializeField] Animator volumeButtonAnimator;
+    bool isFullScreen;
+
+    [Header("volume Variables")]
+
+    [SerializeField] Slider musicSlider;
+    [SerializeField] Slider sfxSlider;
+    ButtonFunctions selectedButtonFunctions;
+    Slider selectedSlider;
+
+    AudioManager audioManager;
     TransitionManager transitionFunctions;
     bool volumeSelected = false;
-    bool isFullScreen;
+    
 
     private void Start()
     {
         transitionFunctions = GetComponent<TransitionManager>();
+        audioManager = GameManager.Instance.GetComponent<AudioManager>();
+        setVariables();
+    }
+
+    public void setVariables()
+    {
         isFullScreen = Screen.fullScreen;
-        setFullScreen();
+        fullScreenToggleAnimator.SetBool("toggle", isFullScreen);
+
+        musicSlider.GetComponent<Slider>().value = audioManager.getMusicVolume();
+        musicSlider.GetComponent<SliderFunctions>().updateText();
+
+        sfxSlider.GetComponent<Slider>().value = audioManager.getSFXVolume();
+        sfxSlider.GetComponent<SliderFunctions>().updateText();
     }
 
     public void fullScreenPressed()
@@ -24,23 +46,33 @@ public class OptionFunctions : MonoBehaviour
         fullScreenToggleAnimator.SetBool("toggle", isFullScreen);
     }
 
-    public void setFullScreen()
+    public void volumePressed(SecondaryButtonElements secondaryButtonElements)
     {
-        fullScreenToggleAnimator.SetBool("toggle", isFullScreen);
-    }
-
-    public void volumePressed()
-    {
+        //set variables
         volumeSelected = !volumeSelected;
-        volumeSlider.GetComponent<SliderFunctions>().selectSlider(volumeSelected);
+        if (secondaryButtonElements)
+        {
+            selectedButtonFunctions = secondaryButtonElements.buttonFunctions;
+            selectedSlider = secondaryButtonElements.secondaryObject.GetComponent<Slider>();
+        }
+
+        //disallow transistions and change escape function
         transitionFunctions.freezeFunctions(volumeSelected);
-        volumeButtonAnimator.SetBool("sliderSelected", volumeSelected);
-        if (GameManager.Instance) GameManager.Instance.GetComponent<EscapeFunctions>().changeAllowFunction(!volumeSelected);
+        GameManager.Instance.GetComponent<EscapeFunctions>().changeAllowFunction(!volumeSelected);
+
+        //select slider and change animator
+        selectedSlider.GetComponent<SliderFunctions>().selectSlider(volumeSelected);
+        selectedButtonFunctions.GetComponent<Animator>().SetBool("sliderSelected", volumeSelected);
     }
 
-    public void setVolume()
+    public void setMusicVolume()
     {
-        Debug.Log(volumeSlider.GetComponent<Slider>().value);
+        audioManager.setMusicVolume(musicSlider.GetComponent<Slider>().value);
+    }
+
+    public void setSFXVolume()
+    {
+        audioManager.setSFXVolume(sfxSlider.GetComponent<Slider>().value);
     }
 
     private void Update()
@@ -49,7 +81,8 @@ public class OptionFunctions : MonoBehaviour
         {
             if(volumeSelected)
             {
-                volumePressed();
+                selectedButtonFunctions.pressButton();
+                volumePressed(null);
             }
         }
     }
