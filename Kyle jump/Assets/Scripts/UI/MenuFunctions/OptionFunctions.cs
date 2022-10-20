@@ -58,7 +58,7 @@ public class OptionFunctions : MonoBehaviour
 
         //disallow transistions and change escape function
         transitionFunctions.freezeFunctions(volumeSelected);
-        GameManager.Instance.GetComponent<EscapeFunctions>().changeAllowFunction(!volumeSelected);
+        GameManager.Instance.GetComponent<PauseFunction>().changeAllowFunction(!volumeSelected);
 
         //select slider and change animator
         selectedSlider.GetComponent<SliderFunctions>().selectSlider(volumeSelected);

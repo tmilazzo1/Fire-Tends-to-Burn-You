@@ -7,6 +7,7 @@ TagManager:
   - Deadly
   - LevelData
   - Projectile
+  - Victory
   layers:
   - Default
   - TransparentFX

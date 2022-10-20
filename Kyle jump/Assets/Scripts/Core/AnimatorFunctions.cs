@@ -4,7 +4,7 @@
 public class SoundBank
 {
     public AudioClip[] variations;
-    [Range(0f, 1.1f)]
+    [Range(0f, 2f)]
     public float volume = 1f;
 }
 

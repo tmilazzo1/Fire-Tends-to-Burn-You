@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     [Header("String names")]
 
     [SerializeField] string spikeTag;
+    [SerializeField] string winTag;
     [SerializeField] string playerName;
 
     [Header("Particles")]
@@ -27,6 +28,10 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject trailParticles;
     [SerializeField] GameObject deathParticles;
     ParticlesOnDeath particlesOnDeath;
+
+    [Header("Audio")]
+
+    [SerializeField] int deathIndex;
 
     private void Awake()
     {
@@ -41,7 +46,7 @@ public class Player : MonoBehaviour
         if (playerIsDead) return;
         playerIsDead = true;
 
-        animatorFunctions.PlaySound(3);
+        animatorFunctions.PlaySound(deathIndex);
         particlesOnDeath.particlesOnDeath(trailParticles, 0, null);
         particlesOnDeath.particlesOnDeath(deathParticles, 30, null);
         GameManager.Instance.playerDeath();
@@ -49,9 +54,18 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (GameManager.Instance.gameIsWon) return;
+
         if (collision.gameObject.tag == spikeTag)
         {
             die();
         }
+
+        if(collision.gameObject.tag == winTag)
+        {
+            GameManager.Instance.StartCoroutine(GameManager.Instance.winGame());
+        }
     }
+
+    
 }

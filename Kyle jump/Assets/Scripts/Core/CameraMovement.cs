@@ -14,7 +14,6 @@ public class CameraMovement : MonoBehaviour
         widthOfScreen = heightOfScreen * cam.aspect;
         GameManager.Instance.setCamera(gameObject);
         GameManager.Instance.changeLevelData();
-        Debug.Log(cam.aspect);
     }
 
     void Update()

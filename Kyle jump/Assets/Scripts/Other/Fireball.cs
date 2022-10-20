@@ -2,12 +2,15 @@
 
 public class Fireball : MonoBehaviour
 {
+    bool collided = false;
+
+    [Header("Unity Setup")]
+
     [SerializeField] GameObject fireTrailParticles;
     [SerializeField] GameObject fireDeathParticles;
     [SerializeField] GameObject fireBallLight;
     Transform parentOnDeath;
     ParticlesOnDeath particlesOnDeath;
-    bool collided = false;
 
     private void Start()
     {
@@ -30,7 +33,7 @@ public class Fireball : MonoBehaviour
         particlesOnDeath.particlesOnDeath(fireTrailParticles, 0, parentOnDeath);
         particlesOnDeath.particlesOnDeath(fireDeathParticles, 5, parentOnDeath);
         fireBallLight.GetComponent<FadeLight>().startFade(parentOnDeath);
-        GetComponent<AnimatorFunctions>().PlaySound(0);
+        GameManager.Instance.GetComponent<AudioManager>().playFireballSound();
         Destroy(gameObject);
     }
 }

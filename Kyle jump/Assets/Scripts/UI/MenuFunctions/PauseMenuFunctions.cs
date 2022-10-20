@@ -6,12 +6,13 @@ public class PauseMenuFunctions : MonoBehaviour
     [SerializeField] Text levelText;
     [SerializeField] Text timeText;
     [SerializeField] int mainMenuIndex;
+    [SerializeField] AudioClip menuSong;
     MenuTransitionFunctions menuTransitionFunctions;
-    EscapeFunctions escapeFunctions;
+    PauseFunction escapeFunctions;
 
     private void Start()
     {
-        escapeFunctions = GameManager.Instance.GetComponent<EscapeFunctions>();
+        escapeFunctions = GameManager.Instance.GetComponent<PauseFunction>();
         menuTransitionFunctions = GetComponent<MenuTransitionFunctions>();
     }
 
@@ -30,7 +31,7 @@ public class PauseMenuFunctions : MonoBehaviour
     {
         menuTransitionFunctions.disableUI();
         escapeFunctions.changeAllowFunction(false);
-        GameManager.Instance.sceneTransition.loadScene(mainMenuIndex);
+        GameManager.Instance.sceneTransition.loadScene(mainMenuIndex, menuSong);
     }
 
     string formatTime(float time)

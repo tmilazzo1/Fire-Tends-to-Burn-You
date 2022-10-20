@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6551739931535842160}
   - component: {fileID: 6551739931535842167}
   - component: {fileID: 7147948055408019988}
-  - component: {fileID: 5488126895143725340}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Projectile
@@ -152,6 +151,7 @@ MonoBehaviour:
   fireTrailParticles: {fileID: 2248398699670372249}
   fireDeathParticles: {fileID: 3339776765253730745}
   fireBallLight: {fileID: 2363103038601196957}
+  fireballExplosionIndex: 0
 --- !u!114 &7147948055408019988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,22 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae2239d4e0fd49e4786cecb1a6473fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5488126895143725340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6551739931535842171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8acade0328df74e4c92a4aee92eeac95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundBank:
-  - variations:
-    - {fileID: 8300000, guid: 422afb6a779bd534e8900dfbdcee673e, type: 3}
-    volume: 1
 --- !u!1001 &3597821008462187915
 PrefabInstance:
   m_ObjectHideFlags: 0

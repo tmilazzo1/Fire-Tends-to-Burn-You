@@ -8,7 +8,7 @@ public class SliderFunctions : MonoBehaviour
     [SerializeField] Animator leftArrowAnimator;
     [SerializeField] Animator rightArrowAnimator;
     Text numberText;
-    [SerializeField] Animator animator;
+    Animator animator;
     Slider slider;
 
     [Header("Attributes")]
@@ -18,12 +18,16 @@ public class SliderFunctions : MonoBehaviour
     bool selected = false;
     float keyDownCounter;
 
+    [Header("Audio")]
+
+    [SerializeField] int sliderIncreaseIndex = 4;
+    [SerializeField] int sliderDecreaseIndex = 5;
+
     private void Awake()
     {
         slider = GetComponent<Slider>();
         numberText = GetComponentInChildren<Text>();
-        //animator = GetComponent<Animator>();
-        //Debug.Log(animator);
+        animator = GetComponent<Animator>();
     }
 
     private void OnEnable()
@@ -47,7 +51,7 @@ public class SliderFunctions : MonoBehaviour
                             animPlaying = true;
                             slider.value += increment;
                             rightArrowAnimator.SetTrigger("bounce");
-                            GameManager.Instance.GetComponent<AnimatorFunctions>().PlaySound(4);
+                            GameManager.Instance.GetComponent<AnimatorFunctions>().PlaySound(sliderIncreaseIndex);
                         } 
                     }
                 }
@@ -60,7 +64,7 @@ public class SliderFunctions : MonoBehaviour
                             animPlaying = true;
                             slider.value -= increment;
                             leftArrowAnimator.SetTrigger("bounce");
-                            GameManager.Instance.GetComponent<AnimatorFunctions>().PlaySound(5);
+                            GameManager.Instance.GetComponent<AnimatorFunctions>().PlaySound(sliderDecreaseIndex);
                         }
                     }
                 }

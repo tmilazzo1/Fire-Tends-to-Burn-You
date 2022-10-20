@@ -16,6 +16,11 @@ public class MenuTransitionFunctions : MonoBehaviour
     int currentMenuNumber;
     Animator animator;
 
+    [Header("Audio")]
+
+    int menuSlideRightIndex = 2;
+    int menuSlideLeftIndex = 3;
+
     [Header("Post-Processing Variables")]
 
     [SerializeField] PostProcessVolume ppVolume;
@@ -48,12 +53,12 @@ public class MenuTransitionFunctions : MonoBehaviour
         if (dir > 0)
         {
             dir = 1;
-            GameManager.Instance.GetComponent<AnimatorFunctions>().PlaySound(2);
+            GameManager.Instance.GetComponent<AnimatorFunctions>().PlaySound(menuSlideRightIndex);
         }
         else
         {
             dir = -1;
-            GameManager.Instance.GetComponent<AnimatorFunctions>().PlaySound(3);
+            GameManager.Instance.GetComponent<AnimatorFunctions>().PlaySound(menuSlideLeftIndex);
         }
 
         currentMenuNumber += dir;

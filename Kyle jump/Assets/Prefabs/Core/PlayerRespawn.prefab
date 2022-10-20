@@ -579,4 +579,4 @@ MonoBehaviour:
   soundBank:
   - variations:
     - {fileID: 8300000, guid: 65a1937b28299d94e823daf4a55f0b6b, type: 3}
-    volume: 1
+    volume: 0.8

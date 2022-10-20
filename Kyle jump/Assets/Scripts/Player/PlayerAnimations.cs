@@ -6,10 +6,17 @@ public class PlayerAnimations : MonoBehaviour
     [Header("Unity Setup")]
 
     [SerializeField] GameObject eye;
+    AnimatorFunctions animatorFunctions;
     Animator animator;
     Rigidbody2D rb;
     PlayerPhysics playerPhysics;
 
+    [Header("Audio")]
+
+    [SerializeField] int jumpIndex;
+    [SerializeField] int landIndex;
+    [SerializeField] int crouchIndex;
+    bool crouching;
 
     [Header("Eye Animation")]
 
@@ -25,9 +32,11 @@ public class PlayerAnimations : MonoBehaviour
 
     private void Start()
     {
+        animatorFunctions = GetComponent<AnimatorFunctions>();
         playerPhysics = GetComponent<PlayerPhysics>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
         velocityCapY = playerPhysics.jumpPower * 0.7f;
         offsetY = eye.transform.localPosition.y;
     }
@@ -39,7 +48,7 @@ public class PlayerAnimations : MonoBehaviour
         eye.transform.localPosition = new Vector3(getNewEyePosX(), getNewEyePosY(), 0);
 
         //call land animation
-        if (rb.velocity.y < -.1) canLand = true;
+        if (rb.velocity.y < -1) canLand = true;
         if (playerPhysics.isGrounded && canLand)
         {
             canLand = false;
@@ -86,14 +95,20 @@ public class PlayerAnimations : MonoBehaviour
     public IEnumerator jump()
     {
         animator.SetBool("jump", true);
+        animatorFunctions.PlaySound(jumpIndex);
+
         yield return new WaitForSeconds(.01f);
+
         animator.SetBool("jump", false);
     }
 
     public IEnumerator land()
     {
         animator.SetBool("landed", true);
+        animatorFunctions.PlaySound(landIndex);
+
         yield return new WaitForSeconds(.01f);
+
         animator.SetBool("landed", false);
     }
     
@@ -102,10 +117,16 @@ public class PlayerAnimations : MonoBehaviour
         if (playerPhysics.canJump() && rb.velocity.x > -.01f && rb.velocity.x < .01f && Input.GetAxisRaw("Vertical") < 0)
         {
             animator.SetBool("crouch", true);
+            if (!crouching)
+            {
+                crouching = true;
+                animatorFunctions.PlaySound(crouchIndex);
+            }
         }
         else
         {
             animator.SetBool("crouch", false);
+            crouching = false;
         }
     }
 }

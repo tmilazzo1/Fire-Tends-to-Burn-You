@@ -116,8 +116,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftArrowAnimator: {fileID: 2221139022823823558}
   rightArrowAnimator: {fileID: 2221139022484478829}
-  animator: {fileID: 2221139021626026032}
   increment: 1
+  sliderIncreaseIndex: 4
+  sliderDecreaseIndex: 5
 --- !u!95 &2221139021626026032
 Animator:
   serializedVersion: 3

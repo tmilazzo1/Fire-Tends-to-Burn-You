@@ -3,6 +3,7 @@
 public class MainMenuFunctions : MonoBehaviour
 {
     [SerializeField] int gameSceneIndex;
+    [SerializeField] AudioClip gameSong;
     MenuTransitionFunctions menuTransitionFunctions;
 
     private void Start()
@@ -13,7 +14,7 @@ public class MainMenuFunctions : MonoBehaviour
     public void newGamePressed()
     {
         menuTransitionFunctions.disableUI();
-        GameManager.Instance.sceneTransition.loadScene(gameSceneIndex);
+        GameManager.Instance.sceneTransition.loadScene(gameSceneIndex, gameSong);
     }
 
     public void quitPressed()

@@ -2,12 +2,19 @@
 
 public class ButtonManager : MonoBehaviour
 {
-    [SerializeField] Transform buttonsParent;
     int maxIndex;
     int index;
     bool keyDown;
     bool isEnabled = true;
     bool isFrozen = false;
+
+    [Header("Unity Setup")]
+
+    [SerializeField] Transform buttonsParent;
+
+    [Header("Audio")]
+
+    [SerializeField] int buttonSelectIndex = 0;
 
     private void Start()
     {
@@ -22,6 +29,7 @@ public class ButtonManager : MonoBehaviour
     {
         if (!isEnabled) return;
         if (isFrozen) return;
+        if (maxIndex == 0) return;
 
         if(Input.GetAxisRaw("Vertical") != 0)
         {
@@ -49,7 +57,7 @@ public class ButtonManager : MonoBehaviour
                         index++;
                     }
                 }
-                GameManager.Instance.GetComponent<AnimatorFunctions>().PlaySound(0);
+                GameManager.Instance.GetComponent<AnimatorFunctions>().PlaySound(buttonSelectIndex);
                 keyDown = true;
             }
         }

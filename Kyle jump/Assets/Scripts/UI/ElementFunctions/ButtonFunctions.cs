@@ -16,8 +16,9 @@ public class ButtonFunctions : MonoBehaviour
     Animator animator;
     int thisIndex;
     bool canPress = true;
-    bool keyDown = false;
+    bool keyDown = true;
     bool submit = false;
+    int buttonSelectIndex = 1;
 
     public void setVariables(int newIndex, ButtonManager newButtonManager)
     {
@@ -43,7 +44,7 @@ public class ButtonFunctions : MonoBehaviour
                     {
                         onPressed.Invoke();
                         animator.SetTrigger("pressed");
-                        GameManager.Instance.GetComponent<AnimatorFunctions>().PlaySound(1);
+                        GameManager.Instance.GetComponent<AnimatorFunctions>().PlaySound(buttonSelectIndex);
                         canPress = false;
                     }
                     keyDown = true;
